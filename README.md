@@ -1,17 +1,31 @@
-# Quartz v5
+# Hermterview
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+Quartz + GitHub Pages site for public-safe backend interview study notes.
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
+Miras writes cleaned Markdown into `content/`. Quartz builds the Obsidian-style public site from that folder.
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+## Local Preview
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+```bash
+npm ci
+npx quartz plugin install
+npx quartz build --serve
+```
 
-## Sponsors
+## Publish Flow
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+```text
+Miras /interview publish
+-> content/index.md, content/sessions, content/topics, content/review
+-> git commit && git push
+-> GitHub Actions builds Quartz
+-> GitHub Pages serves the site
+```
+
+## Privacy Rules
+
+- Do not commit raw audio.
+- Do not commit raw transcripts.
+- Do not commit private personal feedback.
+- Keep `PUBLISH_RAW_TRANSCRIPTS=false`.
+- Keep `PUBLISH_PARTICIPANT_NAMES=false` unless every participant explicitly agrees.
