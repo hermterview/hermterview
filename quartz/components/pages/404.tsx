@@ -3,13 +3,22 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 
 const NotFound: QuartzComponent = ({ cfg, ctx }: QuartzComponentProps) => {
   const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
-  const baseDir = ctx.argv.serve ? "/" : url.pathname
+  const serveBaseDir = ctx.argv.baseDir
+    ? ctx.argv.baseDir.startsWith("/")
+      ? ctx.argv.baseDir
+      : `/${ctx.argv.baseDir}`
+    : "/"
+  const baseDir = ctx.argv.serve ? serveBaseDir : url.pathname
 
   return (
-    <article class="popover-hint">
+    <article class="not-found-page popover-hint">
+      <p class="not-found-kicker">Hermterview</p>
       <h1>404</h1>
-      <p>{i18n(cfg.locale).pages.error.notFound}</p>
-      <a href={baseDir}>{i18n(cfg.locale).pages.error.home}</a>
+      <p class="not-found-title">{i18n(cfg.locale).pages.error.notFound}</p>
+      <p class="not-found-copy">링크가 바뀌었거나 아직 공개 노트가 생성되지 않았을 수 있어요.</p>
+      <a class="not-found-home" href={baseDir}>
+        {i18n(cfg.locale).pages.error.home}
+      </a>
       <script
         dangerouslySetInnerHTML={{
           __html: `

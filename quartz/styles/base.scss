@@ -351,6 +351,83 @@ a {
   }
 }
 
+.not-found-page {
+  min-height: 62vh;
+  max-width: 680px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 5rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  & .not-found-kicker {
+    margin: 0 0 1rem;
+    color: var(--secondary);
+    font-family: var(--codeFont);
+    font-size: 0.8rem;
+    font-weight: $semiBoldWeight;
+    letter-spacing: 0;
+  }
+
+  .page & > h1 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 6rem;
+    line-height: 1;
+  }
+
+  & .not-found-title {
+    margin: 1.25rem 0 0;
+    color: var(--dark);
+    font-size: 1.25rem;
+    font-weight: $semiBoldWeight;
+    line-height: 1.5;
+  }
+
+  & .not-found-copy {
+    max-width: 32rem;
+    margin: 0.75rem 0 0;
+    color: var(--darkgray);
+    line-height: 1.7;
+  }
+
+  & .not-found-home {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    margin-top: 1.75rem;
+    padding: 0 1.1rem;
+    border: 1px solid var(--secondary);
+    border-radius: 6px;
+    background: var(--secondary);
+    color: var(--light);
+    font-weight: $semiBoldWeight;
+
+    &:hover {
+      border-color: var(--tertiary);
+      background: var(--tertiary);
+      color: var(--light);
+    }
+  }
+
+  @media all and ($mobile) {
+    min-height: 58vh;
+    padding: 3.5rem 1rem 3rem;
+
+    .page & > h1 {
+      font-size: 4.5rem;
+    }
+
+    & .not-found-title {
+      font-size: 1.1rem;
+    }
+  }
+}
+
 .footnotes {
   margin-top: 2rem;
   border-top: 1px solid var(--lightgray);

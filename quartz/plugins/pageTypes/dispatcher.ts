@@ -79,13 +79,17 @@ async function emitPage(
   const cfg = ctx.cfg.configuration
   // For the 404 page, use an absolute base path so assets resolve correctly
   // when the hosting provider serves 404.html from any URL depth.
-  // During local dev (--serve), the dev server strips baseDir itself and
-  // serves files from root, so the 404 page must use "/" to avoid requesting
-  // assets under a path prefix that the dev server doesn't serve.
+  // During local dev (--serve), keep the configured baseDir so asset requests
+  // still pass the dev server's site-prefix guard.
+  const serveBaseDir = ctx.argv.baseDir
+    ? ctx.argv.baseDir.startsWith("/")
+      ? ctx.argv.baseDir
+      : `/${ctx.argv.baseDir}`
+    : "/"
   const baseDir =
     slug === "404"
       ? ((ctx.argv.serve
-          ? "/"
+          ? serveBaseDir
           : new URL(`https://${cfg.baseUrl ?? "example.com"}`).pathname) as FullSlug)
       : pathToRoot(slug)
   const externalResources = pageResources(baseDir, resources, ctx)
