@@ -11,28 +11,16 @@ const NotFound: QuartzComponent = ({ cfg, ctx }: QuartzComponentProps) => {
   const baseDir = ctx.argv.serve ? serveBaseDir : url.pathname
   const siteRoot = baseDir === "/" ? "" : baseDir.replace(/\/$/, "")
   const homeHref = siteRoot || "/"
-  const hrefFor = (slug: string) => `${siteRoot}/${slug}`
 
   return (
     <article class="not-found-page popover-hint">
-      <p class="not-found-kicker">Hermterview / 404</p>
-      <h1>{i18n(cfg.locale).pages.error.notFound}</h1>
-      <p class="not-found-title">요청한 주소에 공개 노트가 없습니다.</p>
-      <p class="not-found-copy">
-        링크가 바뀌었거나 아직 발행 전인 노트일 수 있어요. 홈에서 공개된 인터뷰 노트와 복습 항목을
-        다시 찾아볼 수 있습니다.
-      </p>
-      <nav class="not-found-actions" aria-label="404 page links">
-        <a class="not-found-home" href={homeHref}>
-          {i18n(cfg.locale).pages.error.home}
-        </a>
-        <a class="not-found-link" href={hrefFor("review/weak-points")}>
-          Weak Points
-        </a>
-        <a class="not-found-link" href={hrefFor("review/homework")}>
-          Homework
-        </a>
-      </nav>
+      <p class="not-found-kicker">Hermterview</p>
+      <h1>404</h1>
+      <p class="not-found-title">{i18n(cfg.locale).pages.error.notFound}</p>
+      <p class="not-found-copy">주소가 바뀌었거나 아직 공개되지 않은 노트일 수 있습니다.</p>
+      <a class="not-found-home" href={homeHref}>
+        {i18n(cfg.locale).pages.error.home}
+      </a>
       <script
         dangerouslySetInnerHTML={{
           __html: `
